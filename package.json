@@ -1,0 +1,33 @@
+{
+  "name": "cordova-plugin-calendar",
+  "version": "0.0.1",
+  "description": "Cordova Calendar Plugin",
+  "cordova": {
+    "id": "cordova-plugin-calendar",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neo5anderson/cordova-plugin-calendar"
+  },
+  "keywords": [
+    "cordova",
+    "calendar",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "scripts": {},
+  "author": "Neo Anderson",
+  "license": "Apache-2.0",
+  "engines": {
+    "cordovaDependencies": {
+      "3.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "devDependencies": {}
+}

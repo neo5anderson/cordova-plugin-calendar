@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:rim="http://www.blackberry.com/ns/widgets"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-calendar"
+    version="0.0.1">
+    <name>Calendar</name>
+    <description>Cordova Calendar Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,calendar,clock</keywords>
+    <repo>https://github.com/neo5anderson/cordova-plugin-calendar.git</repo>
+
+    <js-module src="www/calendar.js" name="Calendar">
+        <clobbers target="Calendar" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Calendar" >
+                <param name="android-package" value="neo.droid.cordova.calendar.CCalendar"/>
+            </feature>
+        </config-file>
+
+         <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.READ_CALENDAR" />
+            <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+        </config-file>
+
+        <source-file src="src/android/CCalendar.java" target-dir="src/neo/droid/cordova/calendar" />
+    </platform>
+
+    <!-- ios
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="AClock">
+                <param name="ios-package" value="CAClock"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CAClock.h" />
+        <source-file src="src/ios/CAClock.m" />
+
+		<framework src="libz.tbd" />
+    </platform>
+         -->
+
+</plugin>
