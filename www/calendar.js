@@ -1,5 +1,5 @@
 function Calendar() {
-    this.version = '0.0.1';
+    this.version = '0.0.2';
 }
 
 /**

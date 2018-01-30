@@ -15,7 +15,9 @@ import android.util.Log;
 import java.util.Calendar;
 import java.util.TimeZone;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,6 +43,8 @@ public class CCalendar extends CordovaPlugin {
   private static final String kCalendarDescKey = "description";
   private static final String kCalendarIdKey = "calendar_id";
   private static final String kCalendarTimeZoneValue = "Asia/Shanghai";
+
+  private Context context;
 
   public CCalendar() {
   }
@@ -210,6 +214,12 @@ public class CCalendar extends CordovaPlugin {
     return result;
   }
 
+  @Override
+  public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+    super.initialize(cordova, webView);
+    this.context = cordova.getActivity();
+  }
+
   /**
    * Executes the request and returns PluginResult.
    *
@@ -239,16 +249,14 @@ public class CCalendar extends CordovaPlugin {
             final long date = args.getLong(2);
             final int prior = args.getInt(3);
 
-            long id = checkCalendarAccount(cordova.getContext());
+            long id = checkCalendarAccount(context);
             if (-1 == id) {
-              id = addCalendarAccount(cordova.getContext(),
-                  kDefaultCalenderName,
+              id = addCalendarAccount(context, kDefaultCalenderName,
                   kDefaultAccount, kDefaultAccountType, kDefaultAccountName);
             }
 
             if (id > 0) {
-              result = addCalendarEvent(cordova.getContext(), title, desc, date,
-                  prior);
+              result = addCalendarEvent(context, title, desc, date, prior);
             } else {
               level++;
             }
